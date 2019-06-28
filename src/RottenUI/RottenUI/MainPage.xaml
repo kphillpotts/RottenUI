@@ -1,16 +1,160 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d"
-             x:Class="RottenUI.MainPage">
+<ContentPage
+    x:Class="RottenUI.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    xmlns:views="clr-namespace:RottenUI.Views"
+    BackgroundColor="{StaticResource PageColor}"
+    mc:Ignorable="d">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="200" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+
+        <Image
+            Aspect="AspectFill"
+            HeightRequest="200"
+            Source="{Binding BackdropUrl}" />
+
+        <Image
+            Aspect="Fill"
+            HeightRequest="100"
+            Source="white_gradient"
+            VerticalOptions="End" />
+
+        <Image
+            HorizontalOptions="Center"
+            Source="play_button"
+            VerticalOptions="Center" />
+
+        <Grid
+            Grid.Row="0"
+            Grid.RowSpan="2"
+            Margin="14,172,14,0"
+            ColumnSpacing="0"
+            IsClippedToBounds="True"
+            RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="138" />
+                <RowDefinition Height="46" />
+                <RowDefinition Height="46" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <BoxView
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                BackgroundColor="White"
+                CornerRadius="6,6,0,0" />
+            <BoxView
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                BackgroundColor="{StaticResource ButtonColor}"
+                CornerRadius="0,0,6,6" />
+            <Label
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                HorizontalOptions="Center"
+                Style="{StaticResource MovieName}"
+                Text="ADD YOUR RATING"
+                TextColor="White"
+                VerticalOptions="Center" />
+            <skia:SKCanvasView
+                Grid.Row="2"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                PaintSurface="SKCanvasView_PaintSurface" />
+
+            <!--  movie information  -->
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Image
+                    Margin="0,0,-55,0"
+                    Source="Fresh"
+                    TranslationX="-28" />
+
+                <StackLayout Margin="14,0,0,0" VerticalOptions="Center">
+                    <Label Style="{StaticResource MovieName}" Text="{Binding Title}" />
+                    <Label Style="{StaticResource SubText}" Text="{Binding ReleaseDate}" />
+                </StackLayout>
+                <BoxView
+                    Margin="0,0,14,0"
+                    HeightRequest=".5"
+                    VerticalOptions="End"
+                    Color="{StaticResource SubTextColor}" />
+
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <StackLayout Margin="14,0,0,0" VerticalOptions="Center">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="rotten_popcorn" />
+                            <Label Style="{StaticResource MovieName}" Text="{Binding AudienceScore, StringFormat='{0:}%'}" />
+                        </StackLayout>
+                        <Label
+                            Margin="0,-5,0,0"
+                            Style="{StaticResource SubText}"
+                            Text="Audience" />
+                    </StackLayout>
+
+                    <StackLayout
+                        Grid.Column="1"
+                        Margin="14,0,0,0"
+                        VerticalOptions="Center">
+                        <StackLayout Orientation="Horizontal">
+                            <Image Source="rotten_tomato" />
+                            <Label Style="{StaticResource MovieName}" Text="{Binding TomatometerScore, StringFormat='{0:}%'}" />
+                        </StackLayout>
+                        <Label
+                            Margin="0,-5,0,0"
+                            Style="{StaticResource SubText}"
+                            Text="Tomatometer" />
+                    </StackLayout>
+
+                </Grid>
+
+            </Grid>
+
+            <views:DetailsSection
+                Grid.Row="3"
+                Grid.ColumnSpan="2"
+                Margin="0,0,0,14" />
+        </Grid>
+
+        <pancake:PancakeView
+            Grid.RowSpan="2"
+            Margin="28,126,0,0"
+            CornerRadius="20"
+            HeightRequest="170"
+            HorizontalOptions="Start"
+            IsClippedToBounds="True"
+            VerticalOptions="Start"
+            WidthRequest="125">
+            <Image
+                Aspect="AspectFill"
+                HeightRequest="170"
+                HorizontalOptions="Start"
+                Source="{Binding PosterUrl}"
+                VerticalOptions="Start"
+                WidthRequest="125" />
+        </pancake:PancakeView>
+
+    </Grid>
 
 </ContentPage>

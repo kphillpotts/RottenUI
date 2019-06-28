@@ -12,6 +12,7 @@
         <Color x:Key="MainTextColor">#5F6574</Color>
         <Color x:Key="SubTextColor">#B9BCC3</Color>
         <Color x:Key="ButtonColor">#5ACB6E</Color>
+        <Color x:Key="PageColor">#F5F7F9</Color>
 
         <!--  font families  -->
         <OnPlatform x:Key="BoldFont" x:TypeArguments="x:String">

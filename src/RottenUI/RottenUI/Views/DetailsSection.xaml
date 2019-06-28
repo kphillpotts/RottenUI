@@ -1,0 +1,186 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    x:Class="RottenUI.Views.DetailsSection"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:model="clr-namespace:RottenUI.Data"
+    mc:Ignorable="d">
+
+    <Grid Scale=".7">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Label
+                x:Name="InfoTab"
+                Grid.Column="0"
+                Style="{StaticResource SelectedTabLabel}"
+                Text="Info">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label
+                x:Name="CastTab"
+                Grid.Column="1"
+                Style="{StaticResource TabLabel}"
+                Text="Cast">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+
+            <Label
+                x:Name="NewsTab"
+                Grid.Column="2"
+                Style="{StaticResource TabLabel}"
+                Text="News">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label
+                x:Name="CriticsTab"
+                Grid.Column="3"
+                Style="{StaticResource TabLabel}"
+                Text="Critics">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <Label
+                x:Name="MediaTab"
+                Grid.Column="4"
+                Style="{StaticResource TabLabel}"
+                Text="Media">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+        </Grid>
+
+        <BoxView
+            Grid.Row="1"
+            HeightRequest="1"
+            VerticalOptions="Center"
+            Color="{StaticResource SubTextColor}" />
+        <BoxView
+            x:Name="SelectionUnderline"
+            Grid.Row="1"
+            CornerRadius="2"
+            HeightRequest="5"
+            HorizontalOptions="Start"
+            WidthRequest="40"
+            Color="Orange" />
+
+        <Grid
+            x:Name="InfoContent"
+            Grid.Row="2"
+            IsVisible="True"
+            Opacity="1">
+            <Label
+                Margin="10"
+                FontSize="14"
+                Style="{StaticResource SubText}"
+                Text="{Binding Info}" />
+        </Grid>
+
+        <Grid
+            x:Name="CastContent"
+            Grid.Row="2"
+            IsVisible="True"
+            Opacity="0">
+            <ListView
+                BackgroundColor="Transparent"
+                HasUnevenRows="True"
+                ItemsSource="{Binding Cast}"
+                SeparatorVisibility="None">
+                <d:ListView.ItemsSource>
+                    <x:Array Type="{x:Type model:CastMember}">
+                        <model:CastMember Name="Kym" Role="Lead Developer" />
+                        <model:CastMember Name="James" Role="Intern" />
+                    </x:Array>
+                </d:ListView.ItemsSource>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Padding="8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Frame
+                                    Padding="0"
+                                    d:BackgroundColor="Red"
+                                    CornerRadius="30"
+                                    HasShadow="False"
+                                    HeightRequest="60"
+                                    IsClippedToBounds="True"
+                                    WidthRequest="60">
+                                    <Image Aspect="AspectFill" Source="{Binding ImageUrl}" />
+                                </Frame>
+                                <StackLayout Grid.Column="1" VerticalOptions="Center">
+                                    <Label Style="{StaticResource MovieName}" Text="{Binding Name}" />
+                                    <Label Style="{StaticResource SubText}" Text="{Binding Role}" />
+                                    <!--  KYM IS AMAZING <3 ... James was here :)  -->
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Grid
+            x:Name="NewsContent"
+            Grid.Row="2"
+            IsVisible="False"
+            Opacity="0">
+            <Label
+                Margin="10"
+                FontSize="14"
+                Style="{StaticResource SubText}"
+                Text="{Binding Info}" />
+        </Grid>
+
+        <Grid
+            x:Name="CriticsContent"
+            Grid.Row="2"
+            IsVisible="False"
+            Opacity="0">
+            <Label
+                Margin="10"
+                FontSize="14"
+                Style="{StaticResource SubText}"
+                Text="{Binding Info}" />
+        </Grid>
+
+        <Grid
+            x:Name="MediaContent"
+            Grid.Row="2"
+            IsVisible="False"
+            Opacity="0">
+            <Label
+                Margin="10"
+                FontSize="14"
+                Style="{StaticResource SubText}"
+                Text="{Binding Info}" />
+        </Grid>
+
+
+    </Grid>
+
+
+</ContentView>
