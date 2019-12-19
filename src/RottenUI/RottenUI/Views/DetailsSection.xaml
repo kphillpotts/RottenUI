@@ -8,7 +8,7 @@
     xmlns:model="clr-namespace:RottenUI.Data"
     mc:Ignorable="d">
 
-    <Grid Scale=".7">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
